@@ -32,7 +32,7 @@ public class PlayerTank1 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        target = GameObject.FindWithTag("Player2").transform;
+        target = GameObject.FindWithTag("PlayerTank2").transform;
         //opponentScript = GameObject.FindWithTag("Player2").GetComponent<PlayerTank2>();
 
         currentHealth = startHealth;
