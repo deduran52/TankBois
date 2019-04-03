@@ -7,7 +7,7 @@ public class PlayerTank1 : MonoBehaviour
 {
     /* Private Variables */
     Transform target;
-    PlayerTank2 opponentScript;
+    //PlayerTank2 opponentScript;
 
     /* Player Variables */
     public GameObject player;
@@ -32,7 +32,7 @@ public class PlayerTank1 : MonoBehaviour
     void Start()
     {
         target = GameObject.FindWithTag("Player2").transform;
-        opponentScript = GameObject.FindWithTag("Player2").GetComponent<playerController2>();
+        //opponentScript = GameObject.FindWithTag("Player2").GetComponent<PlayerTank2>();
 
         currentHealth = startHealth;
     }
@@ -43,11 +43,11 @@ public class PlayerTank1 : MonoBehaviour
         /* Movement Controls */
         if (Input.GetKey(KeyCode.A))
         {
-            transform.position += Vector3.left * speed * Time.deltaTime;
+            transform.position += Vector3.left * tankSpeed * Time.deltaTime;
         }
         else if (Input.GetKey(KeyCode.D))
         {
-            transform.position += Vector3.right * speed * Time.deltaTime;
+            transform.position += Vector3.right * tankSpeed * Time.deltaTime;
         }
 
         /* Turret Controls */
@@ -86,9 +86,9 @@ public class PlayerTank1 : MonoBehaviour
         }
 
         /* Destroying Tank */
-        if(currentHealth = 0)
+        if(currentHealth == 0)
         {
-            Destroy(GameObject);
+            Destroy(gameObject);
             
         }
 
