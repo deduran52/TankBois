@@ -9,6 +9,8 @@ TagManager:
   - Bullet
   - Wall
   - Ground
+  - PlayerTank1
+  - PlayerTank2
   layers:
   - Default
   - TransparentFX

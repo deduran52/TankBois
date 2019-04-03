@@ -8,9 +8,10 @@ public class PlayerTank1 : MonoBehaviour
     /* Private Variables */
     Transform target;
     //PlayerTank2 opponentScript;
+    
 
     /* Player Variables */
-    public GameObject player;
+    //public GameObject player;
     public float tankSpeed = 2.0f;
     public float startHealth = 100;
     public float currentHealth;
