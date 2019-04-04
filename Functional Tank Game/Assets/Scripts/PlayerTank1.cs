@@ -7,11 +7,11 @@ public class PlayerTank1 : MonoBehaviour
 {
     /* Private Variables */
     Transform target;
-    //PlayerTank2 opponentScript;
+    PlayerTank2 opponentScript;
     
 
     /* Player Variables */
-    //public GameObject player;
+    public GameObject player;
     public float tankSpeed = 2.0f;
     public float startHealth = 100;
     public float currentHealth;
@@ -21,21 +21,26 @@ public class PlayerTank1 : MonoBehaviour
     public Rigidbody2D projectile;
     public GameObject projectileEmitter;
     public float projectileSpeed = 250;
-    public float impactDelay;
+    public float impactDelay = 1;
+    public float bulletDamage = 10;
     public bool firedProjectile;
 
     /* Turret Rotation */
     public GameObject turretRotation;
     public int turretAngle = 1;
-    
+
+    /* Destroyed Tank Flag */
+    public bool isDestroyed;
     
     // Start is called before the first frame update
     void Start()
     {
         target = GameObject.FindWithTag("PlayerTank2").transform;
-        //opponentScript = GameObject.FindWithTag("Player2").GetComponent<PlayerTank2>();
+        opponentScript = GameObject.FindWithTag("Player2").GetComponent<PlayerTank2>();
 
         currentHealth = startHealth;
+
+        isDestroyed = false;
     }
 
     // Update is called once per frame
@@ -89,7 +94,7 @@ public class PlayerTank1 : MonoBehaviour
         /* Destroying Tank */
         if(currentHealth == 0)
         {
-            Destroy(gameObject);
+            Destroy(gameObject, impactDelay);
             
         }
 
@@ -98,6 +103,22 @@ public class PlayerTank1 : MonoBehaviour
     /* Damage Detection */
     void OnCollision2D(Collision2D coll)
     {
+        /*
+         * This may not be needed at the moment !! Do not delete yet !!
+         * 
+        if (coll.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = true;
+        }
+        */
+        if (coll.gameObject.tag == "PlayerTank2")
+        {
+            opponentScript.currentHealth = opponentScript.currentHealth - bulletDamage;
+            //healthBar.setSize(currentHealth / 10);
+            if (currentHealth <= 0)
+                Destroy(gameObject);
+
+        }
 
     }
 }

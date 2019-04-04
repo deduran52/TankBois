@@ -184,7 +184,13 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 119.89387
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 6792809823874683172, guid: 07815d868fa59254fb21733649df38c5,
+        type: 3}
+      propertyPath: Terrain1
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 6792809823874683172, guid: 07815d868fa59254fb21733649df38c5, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 07815d868fa59254fb21733649df38c5, type: 3}
 --- !u!1 &1446275359
 GameObject:
@@ -481,7 +487,7 @@ PrefabInstance:
     - target: {fileID: 3252970404094711386, guid: 7df48da5063689044be59318923f9041,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.68
+      value: 0.67
       objectReference: {fileID: 0}
     - target: {fileID: 3252970404094711386, guid: 7df48da5063689044be59318923f9041,
         type: 3}
@@ -608,7 +614,7 @@ PrefabInstance:
     - target: {fileID: 3834667712156599858, guid: aa990a79d72c36d438004e73d30b2b31,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -12.1
+      value: -11.04
       objectReference: {fileID: 0}
     - target: {fileID: 3834667712156599858, guid: aa990a79d72c36d438004e73d30b2b31,
         type: 3}
