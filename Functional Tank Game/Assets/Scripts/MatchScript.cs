@@ -38,11 +38,15 @@ public class MatchScript : MonoBehaviour
         {
             if (player1.currentHealth > 0 && player2.currentHealth > 0)
             {
+                /* Turn Dictator */
+                turnDetermine(player1, player2);
+
+                /* Start Match */
                 matchTime -= Time.deltaTime;
                 displayTime = (int)matchTime;
                 timerText.text = displayTime.ToString();
 
-                if (fightTime < 0)
+                if (matchTime < 0)
                 {
                     player1.enabled = false;
                     player2.enabled = false;
@@ -95,5 +99,49 @@ public class MatchScript : MonoBehaviour
 
         }
 
-    }
-}
+    } // end update
+
+
+    void turnDetermine(PlayerTank1 player1, PlayerTank2 player2)
+    {
+        if (player1.turnCheck == false && player2.turnCheck == false)
+        {
+            player1.turnCheck = true;
+        }
+        else if (player1.turnCheck == true)
+        {
+            player2.turnCheck = false;
+            if (player1.firedProjectile == true)
+            {
+                player1.turnCheck == false;
+                player2.turnCheck == true;
+            }
+            else if (player1.movementComplete == true)
+            {
+                player1.turnCheck == false;
+                player2.turnCheck == true;
+            }
+        }
+        else if (player2.turnCheck == true)
+        {
+            player1.turnCheck = false;
+            if (player2.firedProjectile == true)
+            {
+                player1.turnCheck == true;
+                player2.turnCheck == false;
+            }
+            else if (player2.movementComplete == true)
+            {
+                player1.turnCheck == true;
+                player2.turnCheck == false;
+            }
+        }
+        else if (matchTime == 0)
+        {
+            player1.turnCheck = false;
+            player2.turnCheck = false;
+        }
+
+    } // end turnDetermine
+
+} // end class

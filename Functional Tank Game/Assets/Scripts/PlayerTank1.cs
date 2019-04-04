@@ -11,6 +11,8 @@ public class PlayerTank1 : MonoBehaviour
 
     /* Turn Variable */
     public bool turnCheck;
+    public bool movementComplete;
+    public float turnTime = 10;
 
     /* Player Variables */
     public GameObject player;
@@ -49,6 +51,14 @@ public class PlayerTank1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /* Movement Complete */
+        if (turnCheck == true && (Input.GetKey(KeyCode.A) == true || Input.GetKey(KeyCode.D) == true || Input.GetKey(KeyCode.LeftArrow) == true || Input.GetKey(KeyCode.RightArrow) == true))
+        {
+            turnTime -= Time.deltaTime;
+            if (turnTime == 0)
+                movementComplete = true;
+        }
+
         /* Movement Controls */
         if (Input.GetKey(KeyCode.A) && turnCheck)
         {
@@ -82,6 +92,7 @@ public class PlayerTank1 : MonoBehaviour
         {
             Rigidbody2D iP = Instantiate(projectile, projectileEmitter.transform.position, projectileEmitter.transform.rotation) as Rigidbody2D;
             iP.AddForce(projectileEmitter.transform.right * projectileSpeed);
+            firedProjectile = true;
         }
         else if (Input.GetKeyDown(KeyCode.UpArrow) && turnCheck)
         {
@@ -113,8 +124,10 @@ public class PlayerTank1 : MonoBehaviour
             currentHealth = currentHealth - bulletDamage;
             //healthBar.setSize(currentHealth / 10);
             if (currentHealth == 0)
+            {
                 Destroy(gameObject);
-
+                isDestroyed = true;
+            }
         }
 
     }
