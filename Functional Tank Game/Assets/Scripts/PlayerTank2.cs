@@ -9,12 +9,14 @@ public class PlayerTank2 : MonoBehaviour
     Transform target;
     PlayerTank1 opponentScript;
 
+    /* Turn Variable */
+    public bool turnCheck;
 
     /* Player Variables */
     public GameObject player;
-    public float tankSpeed = 2.0f;
+    public float tankSpeed = 5.0f;
     public float startHealth = 100;
-    public float currentHealth;
+    private float currentHealth;
     public Image healthBar;
 
     /* Projectile Variable */
@@ -22,12 +24,15 @@ public class PlayerTank2 : MonoBehaviour
     public GameObject projectileEmitter;
     public float projectileSpeed = 250;
     public float impactDelay;
+    public float bulletDamage = 10;
     public bool firedProjectile;
 
     /* Turret Rotation */
     public GameObject turretRotation;
     public int turretAngle = 1;
 
+    /* Destroyed Tank Flag */
+    public bool isDestroyed;
 
     // Start is called before the first frame update
     void Start()
@@ -36,68 +41,79 @@ public class PlayerTank2 : MonoBehaviour
         opponentScript = GameObject.FindWithTag("PlayerTank1").GetComponent<PlayerTank1>();
 
         currentHealth = startHealth;
+
+        isDestroyed = false;
+
     }
 
     // Update is called once per frame
     void Update()
     {
         /* Movement Controls */
-        if (Input.GetKey(KeyCode.A))
-        {
-            transform.position += Vector3.right * tankSpeed * Time.deltaTime;
-        }
-        else if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.A) && turnCheck)
         {
             transform.position += Vector3.left * tankSpeed * Time.deltaTime;
         }
+        else if (Input.GetKey(KeyCode.D) && turnCheck)
+        {
+            transform.position += Vector3.right * tankSpeed * Time.deltaTime;
+        }
 
         /* Turret Controls */
-        else if (Input.GetKey(KeyCode.LeftArrow))
+        else if (Input.GetKey(KeyCode.LeftArrow) && turnCheck)
         {
             if (turretAngle > 0)
-            {
-                turretRotation.transform.Rotate(0, 0, -1);
-                ++turretAngle;
-            }
-        }
-        else if (Input.GetKey(KeyCode.RightArrow))
-        {
-            if (turretAngle <= -180)
             {
                 turretRotation.transform.Rotate(0, 0, 1);
                 --turretAngle;
             }
         }
+        else if (Input.GetKey(KeyCode.RightArrow) && turnCheck)
+        {
+            if (turretAngle <= 180)
+            {
+                turretRotation.transform.Rotate(0, 0, -1);
+                ++turretAngle;
+            }
+        }
 
         /* Cannon Controls */
-        else if (Input.GetKeyDown(KeyCode.Space))
+        else if (Input.GetKeyDown(KeyCode.Space) && turnCheck)
         {
             Rigidbody2D iP = Instantiate(projectile, projectileEmitter.transform.position, projectileEmitter.transform.rotation) as Rigidbody2D;
-            iP.AddForce(projectileEmitter.transform.right * projectileSpeed);
+            iP.AddForce(-projectileEmitter.transform.right * projectileSpeed);
         }
-        else if (Input.GetKeyDown(KeyCode.UpArrow))
+        else if (Input.GetKeyDown(KeyCode.UpArrow) && turnCheck)
         {
-            if (projectileSpeed <= 500)
+            if (projectileSpeed < 1000)
                 projectileSpeed += 25;
         }
-        else if (Input.GetKeyDown(KeyCode.DownArrow))
+        else if (Input.GetKeyDown(KeyCode.DownArrow) && turnCheck)
         {
-            if (projectileSpeed >= 0)
+            if (projectileSpeed > 0)
                 projectileSpeed -= 25;
-        }
-
-        /* Destroying Tank */
-        if (currentHealth == 0)
-        {
-            Destroy(gameObject);
-
         }
 
     }
 
     /* Damage Detection */
-    void OnCollision2D(Collision2D coll)
+    void OnCollisionEnter2D(Collision2D coll)
     {
+        /*
+         * This may not be needed at the moment !! Do not delete yet !!
+         * 
+        if (coll.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = true;
+        }
+        */
+        if (coll.gameObject.CompareTag("Bullet"))
+        {
+            currentHealth = currentHealth - bulletDamage;
+            //healthBar.setSize(currentHealth / 10);
+            if (currentHealth == 0)
+                Destroy(gameObject);
 
+        }
     }
 }

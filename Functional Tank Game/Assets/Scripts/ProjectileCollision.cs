@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ProjectileCollision : MonoBehaviour
 {
-    public float Impactdelay = 1;
+    public float Impactdelay = 2;
 
     private void Update()
     {
@@ -21,7 +21,11 @@ public class ProjectileCollision : MonoBehaviour
         {
             Destroy(gameObject, Impactdelay);
         }
-        else if(other.gameObject.CompareTag("Tank"))
+        else if(other.gameObject.CompareTag("PlayerTank1"))
+        {
+            Destroy(gameObject, Impactdelay);
+        }
+        else if (other.gameObject.CompareTag("PlayerTank2"))
         {
             Destroy(gameObject, Impactdelay);
         }
