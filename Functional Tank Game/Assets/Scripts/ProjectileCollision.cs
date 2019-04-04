@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ProjectileCollision : MonoBehaviour
 {
-    public float Impactdelay = 2;
+    public float Impactdelay = 1;
 
     private void Update()
     {

@@ -47,7 +47,7 @@ public class MatchScript : MonoBehaviour
                     player1.enabled = false;
                     player2.enabled = false;
                     timerText.text = "0";
-                    if (fightTime <= disableTimeText)
+                    if (matchTime <= disableTimeText)
                     {
                         if (player1.currentHealth > player2.currentHealth)
                         {
