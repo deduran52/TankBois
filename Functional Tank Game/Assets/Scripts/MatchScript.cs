@@ -48,8 +48,8 @@ public class MatchScript : MonoBehaviour
 
                 if (matchTime < 0)
                 {
-                    player1.enabled = false;
-                    player2.enabled = false;
+                    //player1.enabled = false;
+                    //player2.enabled = false;
                     timerText.text = "0";
                     if (matchTime <= disableTimeText)
                     {
@@ -75,8 +75,8 @@ public class MatchScript : MonoBehaviour
             }
             else
             {
-                player1.enabled = false;
-                player2.enabled = false;
+                //player1.enabled = false;
+                //player2.enabled = false;
                 if (player1.currentHealth <= 0 && player2.currentHealth > 0)
                 {
                     winText.text = "Player 2 Wins!";
@@ -95,7 +95,7 @@ public class MatchScript : MonoBehaviour
         if (matchTime <= (returnToTitle))
         {
             //animate.SetBool("Exit", true);
-            SceneManager.LoadScene(sceneBuildIndex: 0);
+            //SceneManager.LoadScene(sceneBuildIndex: 0);
 
         }
 
