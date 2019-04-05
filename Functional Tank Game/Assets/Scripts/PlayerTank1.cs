@@ -18,7 +18,7 @@ public class PlayerTank1 : MonoBehaviour
     public GameObject player;
     public float tankSpeed = 5.0f;
     public float startHealth = 100;
-    private float currentHealth;
+    public float currentHealth;
     public Image healthBar;
 
     /* Projectile Variable */

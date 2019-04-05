@@ -11,12 +11,14 @@ public class PlayerTank2 : MonoBehaviour
 
     /* Turn Variable */
     public bool turnCheck;
+    public bool movementComplete;
+    public float turnTime = 10;
 
     /* Player Variables */
     public GameObject player;
     public float tankSpeed = 5.0f;
     public float startHealth = 100;
-    private float currentHealth;
+    public float currentHealth;
     public Image healthBar;
 
     /* Projectile Variable */
@@ -49,6 +51,14 @@ public class PlayerTank2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /* Movement Complete */
+        if (turnCheck == true && (Input.GetKey(KeyCode.A) == true || Input.GetKey(KeyCode.D) == true || Input.GetKey(KeyCode.LeftArrow) == true || Input.GetKey(KeyCode.RightArrow) == true))
+        {
+            turnTime -= Time.deltaTime;
+            if (turnTime == 0)
+                movementComplete = true;
+        }
+
         /* Movement Controls */
         if (Input.GetKey(KeyCode.A) && turnCheck)
         {

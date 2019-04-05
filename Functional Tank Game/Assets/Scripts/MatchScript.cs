@@ -9,7 +9,7 @@ public class MatchScript : MonoBehaviour
 
     public float matchTime;
     private int displayTime;
-    public Text timeText;
+    public Text timerText;
     public float startTime;
     private float startTrigger = 0f;
 
@@ -18,13 +18,15 @@ public class MatchScript : MonoBehaviour
     public Text winText;
 
     public float disableTimeText;
-    public float returnTiTitle;
+    public float returnToTitle;
 
     public Animator animate;
 
     // Start is called before the first frame update
     void Start()
     {
+        player1 = GameObject.FindWithTag("PlayerTank1").GetComponent<PlayerTank1>();
+        player2 = GameObject.FindWithTag("PlayerTank2").GetComponent<PlayerTank2>();
         displayTime = (int)matchTime;
         timerText.text = displayTime.ToString();
     }
@@ -44,7 +46,7 @@ public class MatchScript : MonoBehaviour
                 /* Start Match */
                 matchTime -= Time.deltaTime;
                 displayTime = (int)matchTime;
-                timerText.text = displayTime.ToString();
+                //timerText.text = displayTime.ToString();
 
                 if (matchTime < 0)
                 {
@@ -113,13 +115,13 @@ public class MatchScript : MonoBehaviour
             player2.turnCheck = false;
             if (player1.firedProjectile == true)
             {
-                player1.turnCheck == false;
-                player2.turnCheck == true;
+                player1.turnCheck = false;
+                player2.turnCheck = true;
             }
             else if (player1.movementComplete == true)
             {
-                player1.turnCheck == false;
-                player2.turnCheck == true;
+                player1.turnCheck = false;
+                player2.turnCheck = true;
             }
         }
         else if (player2.turnCheck == true)
@@ -127,13 +129,13 @@ public class MatchScript : MonoBehaviour
             player1.turnCheck = false;
             if (player2.firedProjectile == true)
             {
-                player1.turnCheck == true;
-                player2.turnCheck == false;
+                player1.turnCheck = true;
+                player2.turnCheck = false;
             }
             else if (player2.movementComplete == true)
             {
-                player1.turnCheck == true;
-                player2.turnCheck == false;
+                player1.turnCheck = true;
+                player2.turnCheck = false;
             }
         }
         else if (matchTime == 0)
