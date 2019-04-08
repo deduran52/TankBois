@@ -52,12 +52,14 @@ public class PlayerTank2 : MonoBehaviour
     void Update()
     {
         /* Movement Complete */
+        /*
         if (turnCheck == true && (Input.GetKey(KeyCode.A) == true || Input.GetKey(KeyCode.D) == true || Input.GetKey(KeyCode.LeftArrow) == true || Input.GetKey(KeyCode.RightArrow) == true))
         {
             turnTime -= Time.deltaTime;
             if (turnTime == 0)
                 movementComplete = true;
         }
+        */
 
         /* Movement Controls */
         if (Input.GetKey(KeyCode.A) && turnCheck)
@@ -92,6 +94,7 @@ public class PlayerTank2 : MonoBehaviour
         {
             Rigidbody2D iP = Instantiate(projectile, projectileEmitter.transform.position, projectileEmitter.transform.rotation) as Rigidbody2D;
             iP.AddForce(-projectileEmitter.transform.right * projectileSpeed);
+            firedProjectile = true;
         }
         else if (Input.GetKeyDown(KeyCode.UpArrow) && turnCheck)
         {

@@ -52,12 +52,14 @@ public class PlayerTank1 : MonoBehaviour
     void Update()
     {
         /* Movement Complete */
+        /*
         if (turnCheck == true && (Input.GetKey(KeyCode.A) == true || Input.GetKey(KeyCode.D) == true || Input.GetKey(KeyCode.LeftArrow) == true || Input.GetKey(KeyCode.RightArrow) == true))
         {
             turnTime -= Time.deltaTime;
             if (turnTime == 0)
                 movementComplete = true;
         }
+        */
 
         /* Movement Controls */
         if (Input.GetKey(KeyCode.A) && turnCheck)
