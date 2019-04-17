@@ -267,7 +267,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 2
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -478,7 +478,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 466ea309de8cd574785285aff895175a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  matchTime: 60
+  matchTime: 45
   timerText: {fileID: 479583555}
   p1Time: 0
   p1DisplayTime: 0
@@ -486,12 +486,15 @@ MonoBehaviour:
   p2Time: 0
   p2DisplayTime: 0
   Player2Timer: {fileID: 1338638741}
-  startTime: 0
+  startTime: 5
+  startTimer: 0
+  startTimerDisplay: 0
+  startTimerDis: {fileID: 943867576}
   player1: {fileID: 9164597105054090701}
   player2: {fileID: 3252970403407438409}
   winText: {fileID: 1558782592}
   disableTimeText: 0
-  returnToTitle: 0
+  returnToTitle: -3
   animate: {fileID: 0}
 --- !u!1 &1268749801
 GameObject:
@@ -604,7 +607,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -635,7 +638,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -10.41, y: 10.24}
+  m_AnchoredPosition: {x: -10.409973, y: 10.23999}
   m_SizeDelta: {x: 20.82, y: 20.38}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1382981826 stripped
@@ -655,6 +658,7 @@ GameObject:
   - component: {fileID: 1446275362}
   - component: {fileID: 1446275361}
   - component: {fileID: 1446275360}
+  - component: {fileID: 1446275363}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -720,12 +724,24 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1446275359}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.66, y: 3.24, z: -20}
+  m_LocalPosition: {x: -4.23, y: 3.24, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1446275363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1446275359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44088410c3e756241801b867ee837700, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1463802700
 GameObject:
   m_ObjectHideFlags: 0
@@ -801,7 +817,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 2
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 1
@@ -1038,7 +1054,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -1069,7 +1085,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 9.950012, y: 9.895004}
+  m_AnchoredPosition: {x: 9.950012, y: 9.89502}
   m_SizeDelta: {x: 19.89, y: 19.69}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &3252970403407438404
@@ -1092,7 +1108,7 @@ PrefabInstance:
     - target: {fileID: 3252970404094711386, guid: 7df48da5063689044be59318923f9041,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.33
+      value: -1.1
       objectReference: {fileID: 0}
     - target: {fileID: 3252970404094711386, guid: 7df48da5063689044be59318923f9041,
         type: 3}

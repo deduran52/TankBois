@@ -27,7 +27,7 @@ public class MatchScript : MonoBehaviour
 
     /* Start timer dispaly */
     public float startTimer;
-    public int startTimeDisplay;
+    public int startTimerDisplay;
     public Text startTimerDis;
 
     public PlayerTank1 player1;
@@ -61,6 +61,11 @@ public class MatchScript : MonoBehaviour
         p2DisplayTime = (int)p2Time;
         Player2Timer.text = p2DisplayTime.ToString();
 
+        /* Start timer */
+        startTimer = startTime;
+        //startTimerDisplay = (int)startTimer;
+        //startTimerDis.text = startTimerDisplay.ToString();
+
     }
 
     // Update is called once per frame
@@ -68,10 +73,21 @@ public class MatchScript : MonoBehaviour
     {
         /* Updates Time */
         startTrigger += Time.deltaTime;
+        startTimer -= Time.deltaTime;
         
-        if(startTrigger < startTime)
+       if(startTimer > 1)
         {
+            startTimerDis.text = "Ready!";
+        }
 
+        if(startTimer <= 1 && startTimer >= -1)
+        {
+            //startTimerDis.text = "";
+            startTimerDis.text = "Go!";                                         // This part of the code is not working properly right now need to fix it
+        }
+        if(startTimer < 0)
+        {
+            startTimerDis.text = "";
         }
 
         /* Match Time Updated */
@@ -160,6 +176,7 @@ public class MatchScript : MonoBehaviour
 
         if (matchTime <= (returnToTitle))
         {
+            SceneManager.LoadScene(0);
             //animate.SetBool("Exit", true);
             //SceneManager.LoadScene(sceneBuildIndex: 0);
 

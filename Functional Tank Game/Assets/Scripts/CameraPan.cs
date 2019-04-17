@@ -4,6 +4,16 @@ using UnityEngine;
 
 public class CameraPan : MonoBehaviour
 {
+    PlayerTank1 player1;
+    PlayerTank2 player2;
+
+    Transform tank1;
+    Transform tank2;
+
+    float p1;
+    float p2;
+    float p3;
+
     float margin = 0.001f;
 
     float z0 = 0f;
@@ -12,10 +22,8 @@ public class CameraPan : MonoBehaviour
     float xL;
     float xR;
 
-    Transform tank1;
-    Transform tank2;
     // Start is called before the first frame update
-
+    /*
     void calcScreen(Transform p1, Transform p2)
     {
         // Calculates the xL and xR screen coordinates 
@@ -30,14 +38,18 @@ public class CameraPan : MonoBehaviour
             xR = p1.position.x + margin;
         }
     }
-
+    */
 
     void Start()
     {
+        /* This is instantiating the tank objects as accessable in this program */
+        player1 = GameObject.FindWithTag("PlayerTank1").GetComponent<PlayerTank1>();
+        player2 = GameObject.FindWithTag("PlayerTank2").GetComponent<PlayerTank2>();
+
         tank1 = GameObject.FindWithTag("PlayerTank1").transform;
         tank2 = GameObject.FindWithTag("PlayerTank2").transform;
 
-        calcScreen(tank1, tank2);
+        //calcScreen(tank1, tank2);
         wScene = xR - xL;
         zCam = transform.position.z - z0;
 
@@ -45,7 +57,7 @@ public class CameraPan : MonoBehaviour
 
     void Update()
     {
-        calcScreen(tank1, tank2);
+        //calcScreen(tank1, tank2);
         float width = xR - xL;
         if (width > wScene)
         {
